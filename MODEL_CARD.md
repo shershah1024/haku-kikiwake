@@ -10,9 +10,25 @@ tags:
 - coreml
 ---
 
-# haku-langid (working name)
+# Haku Kikiwake
 
 Spoken language ID from **1.5 seconds** of speech: **52 languages verified**, in one small model that runs on the device.
+
+On the same clips and the same server CPU:
+
+| vs | size | speed | right from 1.5 s |
+|---|---|---|---|
+| **Whisper small** | **5× smaller** (203 MB vs 966 MB) | **8× faster** (0.33 s vs 2.7 s per clip) | **more accurate**: 82% vs 67% |
+| **Qwen3-ASR 0.6B** (Jan 2026) | **9× smaller** (203 MB vs 1.9 GB) | **15× faster** (0.33 s vs 4.7 s per clip) | **as accurate**: 82% vs 85%, no detectable difference |
+
+On the device: **189 MB**, about **19 ms** per 1.5 s clip on a MacBook M1 Neural Engine.
+
+## The name
+
+**聞き分け (kikiwake)** is Japanese for telling sounds apart by ear. That is what the model does: it tells 52 languages
+apart from 1.5 seconds of speech. **Haku** is the app it comes from.
+
+## What ships
 
 - One model: a cut of EmbeddingGemma 2's audio encoder (layers 0-7, 203M parameters) plus two small heads.
   - `langid_cut07_int8.safetensors` (205 MB, int8, PyTorch, CPU).
@@ -39,7 +55,7 @@ Same 130 Common Voice test clips (13 languages, 10 per language, 130 speakers), 
 
 | model | size | time per 1.5 s clip | right from 1.5 s | right on full clip (median 6.1 s) |
 |---|---|---|---|---|
-| **This model** (int8 PyTorch) | 203 MB | 325 ms | **106/130 (82%)** | 116/130 (89%) |
+| **Haku Kikiwake** (int8 PyTorch) | 203 MB | 325 ms | **106/130 (82%)** | 116/130 (89%) |
 | Qwen3-ASR 0.6B | 1.9 GB | 4.7 s | 110/130 (85%) | 122/130 (94%) |
 | Whisper large-v3 | 3.1 GB | 14.7 s | 104/130 (80%) | 121/130 (93%) |
 | MMS-LID-126 | 3.9 GB | 1.3 s | 94/130 (72%) | 124/130 (95%) |
@@ -51,7 +67,7 @@ Same 130 Common Voice test clips (13 languages, 10 per language, 130 speakers), 
 - **From 1.5 s** it is in the top group with Qwen3-ASR and Whisper large-v3. 130 clips cannot tell these three apart
   (a gap needs about 10 points to show). It is clearly ahead of MMS-1024, Whisper small, AmberNet and ECAPA at 1.5 s.
 - **On full clips the big models lead** (MMS-LID-126 124/130, Qwen3-ASR and MMS-1024 122, Whisper large-v3 121; ours 116).
-- It is 1/9 to 1/15 of the size of Qwen3-ASR and Whisper large-v3, and 15x to 45x faster on the same CPU.
+- Against Whisper small, the difference at 1.5 s is clear (paired test, p = 0.009). Against Qwen3-ASR it is not (p = 0.60).
 - The 13 languages: 10 this model verified that every model covers (Arabic, Czech, German, Greek, Finnish, Japanese,
   Persian, Spanish, Thai, Turkish) plus 3 every model covers that it did **not** verify (English, Hindi, Russian).
   On the 10: 86/100 at 1.5 s. On the 3: 20/30.
