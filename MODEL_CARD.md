@@ -35,6 +35,16 @@ apart from 1.5 seconds of speech. **Haku** is the app it comes from.
   - `coreml/kikiwake_int8.mlpackage` (189 MB, int8 Core ML). It takes about 19 ms per 1.5 s clip on a MacBook M1 Neural Engine (median, n=120 clips, measured while the Mac was busy).
 - Everything it needs is in this repo. Nothing else is downloaded: no server, no internet, no separate EmbeddingGemma download.
 
+## Download
+
+The code is in this repo. Get the model files from one of these (all the same files, SHA-256 in the release notes):
+1. **GitHub Release v1.0:** https://github.com/shershah1024/haku-kikiwake/releases/tag/v1.0
+   (`kikiwake_int8.safetensors`, 205 MB; `kikiwake_int8.mlpackage.zip`, the Core ML model, 64 MB zipped).
+2. **Hugging Face:** https://huggingface.co/ShahirHF/haku-kikiwake
+3. **Git LFS (fallback):** `git lfs install && git clone https://github.com/shershah1024/haku-kikiwake` fetches them with the repo.
+
+Put `kikiwake_int8.safetensors` next to `kikiwake.py`.
+
 ## Quick start
 
 ```bash
@@ -164,4 +174,4 @@ Apache-2.0 (`LICENSE`, `NOTICE`). The model files are a modified copy of Embeddi
 this release is not made or endorsed by Google. Use must follow the
 [Gemma Prohibited Use Policy](https://ai.google.dev/gemma/prohibited_use_policy).
 
-Links: to be added when published.
+Links: release https://github.com/shershah1024/haku-kikiwake/releases/tag/v1.0 · Hugging Face https://huggingface.co/ShahirHF/haku-kikiwake
