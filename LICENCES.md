@@ -7,7 +7,7 @@ No audio, transcripts or text from any source below is included in this release;
 
 | model | licence | what we did |
 |---|---|---|
-| EmbeddingGemma 2, Google DeepMind ([google/embeddinggemma-2](https://huggingface.co/google/embeddinggemma-2), revision `f9972ac`) | Apache-2.0, not gated | kept audio encoder layers 0-7, removed the rest, converted to int8 / Core ML. Use must follow the [Gemma Prohibited Use Policy](https://ai.google.dev/gemma/prohibited_use_policy). Not made or endorsed by Google. |
+| EmbeddingGemma 2, Google DeepMind ([google/embeddinggemma-2](https://huggingface.co/google/embeddinggemma-2), revision `f9972ac`) | Apache-2.0, not gated | kept audio encoder layers 0-7, removed the rest, converted to int8 / Core ML; `feature_extractor_config.json` is its audio feature-extractor configuration, copied unchanged. Use must follow the [Gemma Prohibited Use Policy](https://ai.google.dev/gemma/prohibited_use_policy). Not made or endorsed by Google. |
 
 ## Training data
 

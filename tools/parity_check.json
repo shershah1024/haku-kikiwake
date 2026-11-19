@@ -1,0 +1,17 @@
+{
+ "max_abs_diff_vs_inmemory": 0.0,
+ "checked_inmemory": 10,
+ "control_changed_scale_max_abs_diff": 0.28728485107421875,
+ "n (0 = full clip, 1 = 1.5 s)": {
+  "0": 130,
+  "1": 130
+ },
+ "agree_with_comparison_run": {
+  "0": 130,
+  "1": 130
+ },
+ "right": {
+  "0": 116,
+  "1": 106
+ }
+}

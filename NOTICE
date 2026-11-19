@@ -4,12 +4,13 @@ Copyright 2026 Shahir
 This product is licensed under the Apache License, Version 2.0 (see LICENSE).
 
 MODIFIED WORK: EmbeddingGemma 2
-  The model file in this release (langid_cut07_int8.safetensors and coreml/langid_cut07_q8.mlpackage) is a modified copy of EmbeddingGemma 2 by Google DeepMind
+  The model files in this release (kikiwake_int8.safetensors and coreml/kikiwake_int8.mlpackage) are a modified copy of EmbeddingGemma 2 by Google DeepMind
   (https://huggingface.co/google/embeddinggemma-2, revision f9972ac22e696a105c482202646979e33e4b5a1e;
   technical report arXiv:2610.37364), licensed under the Apache License, Version 2.0.
   Changes made by us: kept only the audio subsample convolution, the relative position encoding and audio
   encoder layers 0-7; removed every later audio layer, the audio projection, the text, vision and video parts;
-  added two language-ID heads that read layer 7; converted the weights to int8 (PyTorch dynamic quantization; Core ML linear weight quantization).
+  added two language-ID heads that read layer 7; feature_extractor_config.json is EmbeddingGemma 2's audio
+  feature-extractor configuration, copied unchanged; converted the weights to int8 (PyTorch dynamic quantization; Core ML linear weight quantization).
   This release is not made, endorsed or supported by Google.
   Use must follow the Gemma Prohibited Use Policy: https://ai.google.dev/gemma/prohibited_use_policy
 

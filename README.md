@@ -19,23 +19,23 @@ apart from 1.5 seconds of speech. **Haku** is the app it comes from.
 ## What ships
 
 - One model: a cut of EmbeddingGemma 2's audio encoder (layers 0-7, 203M parameters) plus two small heads.
-  - `langid_cut07_int8.safetensors` (205 MB, int8, PyTorch, CPU).
-  - `coreml/langid_cut07_q8.mlpackage` (189 MB, int8 Core ML). It takes about 19 ms per 1.5 s clip on a MacBook M1 Neural Engine (median, n=120 clips, measured while the Mac was busy).
-- No server and no internet needed after the first download.
+  - `kikiwake_int8.safetensors` (205 MB, int8, PyTorch, CPU).
+  - `coreml/kikiwake_int8.mlpackage` (189 MB, int8 Core ML). It takes about 19 ms per 1.5 s clip on a MacBook M1 Neural Engine (median, n=120 clips, measured while the Mac was busy).
+- Everything it needs is in this repo. Nothing else is downloaded: no server, no internet, no separate EmbeddingGemma download.
 
 ## Quick start
 
 ```bash
 pip install -r requirements.txt
-python langid.py . clip.wav          # run from this folder
+python kikiwake.py clip.wav
 ```
 ```python
-from langid import LangID
-m = LangID(".")
+from kikiwake import Kikiwake
+m = Kikiwake()
 m("spa.wav")   # a 1.5 s Common Voice clip: [('spa', 'Spanish', -0.13), ('cat', 'Catalan', -11.63), ('ast', 'Asturian', -12.16)]
 ```
-Audio is resampled to 16 kHz mono; the first 10 s are used. Feature extraction comes from `google/embeddinggemma-2`
-(revision `f9972ac`), downloaded on first use. Answers are limited to the 96 languages both heads know; only the 52 below are verified.
+Audio is resampled to 16 kHz mono; the first 10 s are used. The audio feature settings ship in `feature_extractor_config.json`
+(copied from EmbeddingGemma 2), so it runs offline from a fresh clone. Answers are limited to the 96 languages both heads know; only the 52 below are verified.
 
 ## How good is it
 
@@ -148,7 +148,7 @@ Shrutilipi, OpenSLR 28. No audio, transcripts or text from any source is include
 
 ## Licence
 
-Apache-2.0 (`LICENSE`, `NOTICE`). The model file is a modified copy of EmbeddingGemma 2 by Google DeepMind (Apache-2.0);
+Apache-2.0 (`LICENSE`, `NOTICE`). The model files are a modified copy of EmbeddingGemma 2 by Google DeepMind (Apache-2.0);
 this release is not made or endorsed by Google. Use must follow the
 [Gemma Prohibited Use Policy](https://ai.google.dev/gemma/prohibited_use_policy).
 

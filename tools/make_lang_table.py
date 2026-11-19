@@ -1,4 +1,4 @@
-"""Verified-language table from the G-2995 confirm run (CONFIRM.json), never typed by hand.
+"""Verified-language table from the fresh confirm run (CONFIRM.json, scored once after the model was frozen), never typed by hand.
 usage: python make_lang_table.py CONFIRM.json label_names.json > LANGUAGES_TABLE.md"""
 import json, sys
 C, N = json.load(open(sys.argv[1])), json.load(open(sys.argv[2]))
