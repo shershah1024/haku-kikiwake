@@ -1,0 +1,49 @@
+haku-langid (working name)
+Copyright 2026 Shahir
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+MODIFIED WORK: EmbeddingGemma 2
+  The model file in this release (langid_cut07_int8.safetensors and coreml/langid_cut07_q8.mlpackage) is a modified copy of EmbeddingGemma 2 by Google DeepMind
+  (https://huggingface.co/google/embeddinggemma-2, revision f9972ac22e696a105c482202646979e33e4b5a1e;
+  technical report arXiv:2610.37364), licensed under the Apache License, Version 2.0.
+  Changes made by us: kept only the audio subsample convolution, the relative position encoding and audio
+  encoder layers 0-7; removed every later audio layer, the audio projection, the text, vision and video parts;
+  added two language-ID heads that read layer 7; converted the weights to int8 (PyTorch dynamic quantization; Core ML linear weight quantization).
+  This release is not made, endorsed or supported by Google.
+  Use must follow the Gemma Prohibited Use Policy: https://ai.google.dev/gemma/prohibited_use_policy
+
+Training data for the language-ID heads (no audio, transcripts or text from these sources is included):
+
+Synthetic TTS audio (ElevenLabs)                    [head 1]
+  Speech generated with ElevenLabs (eleven_v4, stock voices) reading FLEURS sentences. Used under the generating
+  account's terms. No ElevenLabs audio is included in this release.
+
+Rasa (AI4Bharat)                                    [head 1]
+  https://huggingface.co/datasets/ai4bharat/Rasa  Licensed under CC BY 4.0.
+
+FLEURS
+  Conneau et al., 2022, arXiv:2205.12446. https://huggingface.co/datasets/google/fleurs
+  Licensed under CC BY 4.0. FLEURS sentences come from FLoRes (CC BY-SA 4.0); no text is included here.
+
+Omnilingual ASR corpus
+  Omnilingual ASR Team, 2025, arXiv:2511.09690. https://huggingface.co/datasets/facebook/omnilingual-asr-corpus
+  Licensed under CC BY 4.0.
+
+VoxLingua107
+  Valk and Alumae, 2021, IEEE SLT 2021. https://cs.taltech.ee/staff/tanel.alumae/data/voxlingua107/
+  Licensed under CC BY 4.0. The copyright of the source videos remains with their owners.
+
+IndicVoices, Kathbath, Shrutilipi (AI4Bharat)
+  Javed et al., ACL Findings 2024 (arXiv:2403.01926); Javed et al., 2022 (arXiv:2208.11761);
+  Bhogale et al., ICASSP 2023 (arXiv:2208.12666). Licensed under CC BY 4.0.
+
+OpenSLR 28, RIRS_NOISES
+  Ko et al., ICASSP 2017. https://www.openslr.org/28/  Licensed under the Apache License, Version 2.0.
+  Room impulse responses and noises mixed into training copies.
+
+Test data (scores and clip ids only): Common Voice 17 (CC0), Multilingual LibriSpeech (CC BY 4.0), VoxPopuli (CC0),
+ParCzech (CC BY), ParlamentParla (CC BY 4.0), ALFFA Amharic (MIT), NCHLT (CC BY 3.0; de Vries et al., Speech
+Communication 56, 2014), IndicVoices valid (CC BY 4.0).
+
+Language names: ISO 639-3 code tables, SIL International, https://iso639-3.sil.org

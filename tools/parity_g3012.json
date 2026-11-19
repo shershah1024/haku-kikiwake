@@ -1,0 +1,17 @@
+{
+ "exact_vs_inmemory": 0,
+ "checked_inmemory": 10,
+ "control_changed_scale_still_exact": false,
+ "n": {
+  "0": 130,
+  "1": 130
+ },
+ "agree_with_g3012": {
+  "0": 130,
+  "1": 130
+ },
+ "right": {
+  "0": 116,
+  "1": 106
+ }
+}
